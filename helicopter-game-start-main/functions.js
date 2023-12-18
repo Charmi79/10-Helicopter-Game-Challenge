@@ -72,12 +72,37 @@ function checkCollisions() {
 	// Collision with Top and Green Bars
 	if (heli.y < 50) {
 		gameOver();
+	} else if (heli.y + heli.h > cnv.height - 50) {
+		gameOver();
 	}
 
 	// Collision with the Walls
+	if (
+		heli.x < wall1.x + wall1.w &&
+		heli.x + heli.w > wall1.x &&
+		heli.y < wall1.y + wall1.h &&
+		heli.y + heli.h > wall1.y
+	) {
+		gameOver();
+	} else if (
+		heli.x < wall2.x + wall2.w &&
+		heli.x + heli.w > wall2.x &&
+		heli.y < wall2.y + wall2.h &&
+		heli.y + heli.h > wall2.y
+	) {
+		gameOver();
+	} else if (
+		heli.x < wall3.x + wall3.w &&
+		heli.x + heli.w > wall3.x &&
+		heli.y < wall3.y + wall3.h &&
+		heli.y + heli.h > wall3.y
+	) {
+		gameOver();
+	}
 }
 
 function gameOver() {
+	explosion.play();
 	state = "gameover";
 
 	setTimeout(reset, 2000);
